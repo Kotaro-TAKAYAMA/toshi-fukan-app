@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>都市俯瞰景観 対応付け実験</title>
+    <style>:root{--overhead-w:1200px;--overhead-h:1080px;--map-size:720px}html,body{background:#111;width:100%;height:100%;margin:0;padding:0;overflow:hidden}#stage{transform-origin:0 0;width:1920px;height:1080px;position:fixed;top:0;left:0}#overheadFrame{width:var(--overhead-w);height:var(--overhead-h);position:absolute;top:0;left:0;overflow:hidden}#cesiumContainer{width:100%;height:100%}#mapPanel{left:var(--overhead-w);background:#111;justify-content:center;align-items:center;display:flex;position:absolute;top:0;bottom:0;right:0}#mapImage{width:var(--map-size);height:var(--map-size);display:block}#mapImage[hidden]{display:none}#mapWrap{width:var(--map-size);height:var(--map-size);position:relative}#drawOverhead,#drawMap{z-index:4;pointer-events:none;touch-action:none;width:100%;height:100%;position:absolute;top:0;left:0}#drawOverhead[hidden],#drawMap[hidden],#drawToolbar[hidden]{display:none}#drawToolbar{color:#fff;font:14px sans-serif;position:absolute;top:16px;left:16px;right:16px}#drawToolbar .drawNote{margin-bottom:8px;line-height:1.5}#drawToolbar .drawTools{flex-wrap:wrap;gap:6px;display:flex}#drawToolbar button{padding:5px 10px;font-size:14px}#drawToolbar button.selected{outline:3px solid #ffd400;font-weight:700}#explanationPanel{color:#fff;font:15px sans-serif;position:absolute;bottom:12px;left:16px;right:16px}#explanationPanel[hidden]{display:none}#explanationPanel textarea{box-sizing:border-box;resize:none;width:100%;height:64px;margin:6px 0;font:16px sans-serif}#explanationPanel .row{justify-content:space-between;align-items:center;display:flex}#explanationPanel button{padding:6px 24px;font-size:16px}#explanationError{color:#f88;font-size:14px}#cover{text-align:center;color:#eee;white-space:pre-wrap;z-index:10;background:#222;flex-direction:column;justify-content:center;align-items:center;gap:24px;font:20px sans-serif;display:flex;position:fixed;inset:0}#cover[hidden],#debugPanel[hidden],#coverButtons[hidden],#confidencePanel[hidden]{display:none}#coverButtons button{margin:0 8px;padding:10px 32px;font-size:20px}#confidencePanel{color:#fff;z-index:6;text-align:center;white-space:nowrap;background:#000c;border-radius:6px;padding:14px 20px;font:16px sans-serif;position:absolute;bottom:40px;left:50%;transform:translate(-50%)}#confidencePanel .buttons{justify-content:center;gap:12px;margin:12px 0 6px;display:flex}#confidencePanel button{width:56px;height:44px;font-size:18px}#confidencePanel .scale{color:#ccc;justify-content:space-between;font-size:13px;display:flex}#debugPanel{color:#fff;white-space:pre;z-index:20;background:#000000b3;padding:8px 10px;font:13px monospace;position:fixed;top:8px;left:8px}#debugPanel a{color:#9cf;margin-right:6px}#highlightCanvas{z-index:3;pointer-events:none;width:100%;height:100%;position:absolute;inset:0}#highlightCanvas[hidden]{display:none}#northArrow{z-index:5;pointer-events:none;position:absolute;top:16px;right:16px}#calcContainer{z-index:-1;visibility:hidden;pointer-events:none;position:absolute;inset:0}#calcContainer.overlay{z-index:4;visibility:visible;opacity:.5}#calcContainer .cesium-widget-credits{display:none}#answerBar{color:#fff;z-index:6;white-space:nowrap;background:#000000bf;border-radius:6px;align-items:center;gap:16px;padding:10px 16px;font:16px sans-serif;display:flex;position:absolute;bottom:48px;left:50%;transform:translate(-50%)}#answerBar[hidden]{display:none}#answerBar button{padding:6px 20px;font-size:16px}#osmAttribution{color:#fff;z-index:5;pointer-events:none;background:#00000080;padding:1px 4px;font:11px sans-serif;position:absolute;bottom:4px;right:6px}</style>
+    <script type="module" crossorigin src="/toshi-fukan-app/assets/main-CGnr1xz0.js"></script>
+    <link rel="modulepreload" crossorigin href="/toshi-fukan-app/assets/load-CTWceu4H.js">
+    <link rel="modulepreload" crossorigin href="/toshi-fukan-app/assets/modulepreload-polyfill-P2Xu9kJm.js">
+    <link rel="modulepreload" crossorigin href="/toshi-fukan-app/assets/capture-BKt8IjJt.js">
+    <link rel="modulepreload" crossorigin href="/toshi-fukan-app/assets/overheadViewer-Dl4fnkvU.js">
+    <link rel="modulepreload" crossorigin href="/toshi-fukan-app/assets/config-CzoYbcar.js">
+    <link rel="modulepreload" crossorigin href="/toshi-fukan-app/assets/upload-DQ_qtte_.js">
+    <link rel="stylesheet" crossorigin href="/toshi-fukan-app/assets/load-B9DDZdqH.css">
+  </head>
+  <body>
+    <div id="stage">
+    <div id="overheadFrame">
+      <div id="cesiumContainer"></div>
+      <div id="calcContainer"></div>
+      <canvas id="highlightCanvas" hidden></canvas>
+      <canvas id="drawOverhead" width="1200" height="1080" hidden></canvas>
+      <div id="northArrow"></div>
+      <div id="osmAttribution">© OpenStreetMap contributors</div>
+      <div id="answerBar" hidden>
+        <span id="answerText"></span>
+        <button id="confirmButton" disabled>確定</button>
+      </div>
+      <div id="confidencePanel" hidden>
+        <div>この回答にどのくらい自信がありますか？</div>
+        <div class="buttons">
+          <button data-value="1">1</button>
+          <button data-value="2">2</button>
+          <button data-value="3">3</button>
+          <button data-value="4">4</button>
+          <button data-value="5">5</button>
+        </div>
+        <div class="scale"><span>まったく自信がない</span><span>とても自信がある</span></div>
+      </div>
+    </div>
+    <div id="mapPanel">
+      <div id="drawToolbar" hidden></div>
+      <div id="mapWrap">
+        <img id="mapImage" alt="地図" hidden />
+        <canvas id="drawMap" width="720" height="720" hidden></canvas>
+      </div>
+      <div id="explanationPanel" hidden>
+        <div id="explanationPrompt"></div>
+        <textarea id="explanationInput"></textarea>
+        <div class="row">
+          <span id="explanationError"></span>
+          <button id="explanationNext">次へ</button>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div id="cover">
+      <div id="coverText">読み込み中…</div>
+      <div id="coverButtons" hidden></div>
+    </div>
+    <div id="debugPanel" hidden></div>
+    <!-- Vite 以外（Live Server など）で開くと TypeScript を読み込めないため、起動方法を表示する -->
+  </body>
+</html>

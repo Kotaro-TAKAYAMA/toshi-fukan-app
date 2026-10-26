@@ -1,0 +1,14 @@
+{
+  "fetchedAt": "2026-10-15T00:26:37.455Z",
+  "source": "https://overpass.kumi.systems/api/interpreter",
+  "osmTimestamp": "2026-05-06T03:25:00Z",
+  "bbox": {
+    "south": 35.69433732365302,
+    "west": 139.76826038348239,
+    "north": 35.702333865224446,
+    "east": 139.77807844985162
+  },
+  "bufferM": 150,
+  "featureCount": 3497,
+  "attribution": "© OpenStreetMap contributors (ODbL)"
+}

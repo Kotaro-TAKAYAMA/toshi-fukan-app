@@ -1,14 +1,18 @@
 {
-  "fetchedAt": "2026-10-14T08:59:10.096Z",
+  "fetchedAt": "2026-10-29T07:20:43.277Z",
   "source": "https://overpass-api.de/api/interpreter",
-  "osmTimestamp": "2026-10-14T08:57:21Z",
+  "osmTimestamp": "2026-10-29T07:19:10Z",
   "bbox": {
-    "south": 35.659261680311715,
-    "west": 139.7274131314939,
-    "north": 35.66725823090176,
-    "east": 139.7372268685061
+    "south": 35.654978003303306,
+    "west": 139.72214063814624,
+    "north": 35.67154190791017,
+    "east": 139.74249936185376
   },
   "bufferM": 150,
-  "featureCount": 2039,
+  "mapShift": 0.25,
+  "shiftM": 147.1,
+  "mapScale": 1.5,
+  "transformM": 329.8,
+  "featureCount": 8406,
   "attribution": "© OpenStreetMap contributors (ODbL)"
 }
